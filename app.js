@@ -1,4 +1,5 @@
 // Simple echo for GitHub webhook testing
+console.log('Starting app.js');
 var http = require('http');
 const config = require('./config/config');
 const util = require('util');

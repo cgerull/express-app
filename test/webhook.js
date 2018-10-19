@@ -36,6 +36,10 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 describe('GitHub webhooks', () => {
+  before(function (done) {
+    console.log('Preparing Mailer Tests');
+    done();
+  });
     // beforeEach((done) => {
     //     Book.remove({}, (err) => { 
     //        done();         
@@ -43,6 +47,7 @@ describe('GitHub webhooks', () => {
     // });
   after(function() {
     server.close();
+    console.log('Mailer Tests finished');
   });
   /*
   * Test the /POST route
@@ -63,7 +68,7 @@ describe('GitHub webhooks', () => {
   describe('/POST webhook with signature and payload', () => {
     it('it should pass and log the payload', (done) => {
       shaSign = signBlob(key, json);
-      console.log('sha1 = ' + shaSign);
+      console.log('Webhook sha1 = ' + shaSign);
       chai.request('http://localhost:3000')
         .post('/webhook')
         .set('Content-Type', 'application/json')
